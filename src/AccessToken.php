@@ -1,6 +1,6 @@
 <?php
 
-namespace InvolveAsiaJwt;
+namespace Wiraizkandar\InvolveAsiaJwt;
 
 class AccessToken
 {
