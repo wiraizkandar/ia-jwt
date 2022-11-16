@@ -3,6 +3,11 @@
   "description": "JWT helper on top of Firebase JWT",
   "minimum-stability": "stable",
   "license": "proprietary",
+  "autoload": {
+    "psr-4": {
+      "wiraizkandar\\InvolveAsiaJwt\\": "src/"
+    }
+  },
   "authors": [
     {
       "name": "wiraizkandar",
@@ -10,6 +15,7 @@
     }
   ],
   "require": {
+    "php": ">=8.0",
     "firebase/php-jwt": "^6.3.1"
   }
 }
