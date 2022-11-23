@@ -54,7 +54,7 @@ class JwtServiceProvider extends ServiceProvider
 
 		// Register the main class to use with the facade
 		$this->app->singleton('jwt', function () {
-			return new IaJwt;
+			return new Jwt;
 		});
 	}
 }
