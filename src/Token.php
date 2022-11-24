@@ -14,7 +14,7 @@ class Token
 	public function __construct()
 	{
 		$this->algo = '';
-		$this->secretKey = '';
+		$this->secretKey = 'wiraizkandar';
 	}
 
 	/**
