@@ -5,6 +5,12 @@ namespace Wiraizkandar\Jwt\Http\Middleware;
 use Closure;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+use Firebase\JWT\BeforeValidException;
+use Firebase\JWT\ExpiredException;
+use Firebase\JWT\SignatureInvalidException;
+use DomainException;
+use InvalidArgumentException;
+use UnexpectedValueException;
 
 class VerifyJwtToken
 {
@@ -62,6 +68,7 @@ class VerifyJwtToken
 		if (Str::startsWith($header, 'Bearer ')) {
 			return Str::substr($header, 7);
 		}
+		return null;
 	}
 
 	/**

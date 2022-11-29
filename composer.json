@@ -17,13 +17,14 @@
     }
   ],
   "require": {
-    "php": "^7.4|^8.0",
-    "illuminate/support": "^9.0",
+    "php": "^8.0",
     "firebase/php-jwt": "^6.3.1",
-    "ramsey/uuid": "^4.6.0"
+    "illuminate/support": "^9.0",
+    "ramsey/uuid": "^4.6.0",
+    "guzzlehttp/guzzle": "^7.2"
   },
   "require-dev": {
-    "orchestra/testbench": "^6.0",
+    "orchestra/testbench": "^7.0",
     "phpunit/phpunit": "^9.0"
   },
   "autoload": {
