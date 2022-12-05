@@ -24,6 +24,13 @@ class JwtServiceProvider extends ServiceProvider
 				__DIR__.'/../config/config.php' => config_path('jwt.php'),
 			], 'config');
 
+			if (! class_exists('CreateRefreshTokenTable')) {
+				$this->publishes([
+					__DIR__ . '/../database/migrations/create_refresh_token_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_refresh_token_table.php'),
+					// you can add any number of migrations here
+				], 'migrations');
+			}
+
 			// Publishing the views.
 			/*$this->publishes([
 				__DIR__.'/../resources/views' => resource_path('views/vendor/ia-jwt'),
