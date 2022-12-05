@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\DB;
 
 class Token extends BaseToken
 {
-	private $algo;
-	private $secretKey;
-	private refreshTokenTable;
+	private string $algo;
+	private string $secretKey;
+	private string $refreshTokenTable;
 
 	public function __construct()
 	{
@@ -58,7 +58,7 @@ class Token extends BaseToken
 
 	private function verifyRefreshToken(string $refreshToken, int $userId): bool
 	{
-		$refToken = DB::table('refresh_token')
+		$refToken = DB::table($this->refreshTokenTable)
 			->where('user_id',$userId)
 			->where('refresh_token',$refreshToken)
 			->where('revoked',false)
