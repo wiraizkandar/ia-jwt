@@ -19,9 +19,10 @@
   "require": {
     "php": "^8.0",
     "firebase/php-jwt": "^6.3.1",
+    "guzzlehttp/guzzle": "^7.2",
     "illuminate/support": "^9.0",
-    "ramsey/uuid": "^4.6.0",
-    "guzzlehttp/guzzle": "^7.2"
+    "nesbot/carbon": "^2.63",
+    "ramsey/uuid": "^4.6.0"
   },
   "require-dev": {
     "orchestra/testbench": "^7.0",

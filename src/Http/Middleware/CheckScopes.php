@@ -8,8 +8,6 @@ use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Firebase\JWT\SignatureInvalidException;
 use Illuminate\Support\Facades\Http;
-use GuzzleHttp\Middleware;
-use GuzzleHttp\HandlerStack;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 use Wiraizkandar\Jwt\Http\Exception\InvalidPermissionException;
@@ -25,7 +23,7 @@ class CheckScopes
 	 * @param string $scope
 	 * @return \Illuminate\Http\Response
 	 */
-	public function handle(Request $request, $next, $scope)
+	public function handle(Request $request, $next, string $scope = '')
 	{
 		try {
 			/**

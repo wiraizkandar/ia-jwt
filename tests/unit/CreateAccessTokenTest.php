@@ -3,21 +3,48 @@
 namespace Wiraizkandar\Jwt\Tests\unit;
 
 use Orchestra\Testbench\TestCase;
+use Wiraizkandar\Jwt\Token;
+use Config;
 
 class CreateAccessTokenTest extends TestCase
 {
+	public function setUp():void
+	{
+		parent::setUp();
+		$this->setConfigs();
+	}
+
 	/**
-	 * A basic test example.
-	 *
 	 * @return void
 	 */
 	public function test_create_access_token()
 	{
-		$this->assertTrue(true);
+		$claims['user_id'] = 12121;
+
+		$token = new Token();
+
+		$jwtToken = $token->createAccessToken($claims);
+
+		$this->assertArrayHasKey('access_token',$jwtToken);
 	}
 
-	public function test_verify_access_token()
+	public function test_create_refresh_token()
 	{
-		$this->assertTrue(true);
+		$claims['user_id'] = 12121;
+
+		$token = new Token();
+
+		$jwtToken = $token->createAccessToken($claims);
+
+		$this->assertArrayHasKey('refresh_token',$jwtToken);
+	}
+
+	/**
+	 * Set default config for testing
+	 */
+	private function setConfigs(){
+		Config::set('config.secret_key','this_is_my_secret_key');
+		Config::set('config.algo','HS256');
+		Config::set('config.scope_end_point_verify','http://www.example.com');
 	}
 }

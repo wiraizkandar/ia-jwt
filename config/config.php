@@ -41,5 +41,12 @@
         | User scope verification end point. to verify permission
         |--------------------------------------------------------------------------
         */
-		'scope_end_point_verify' => env('scope_verification_end_point', 'http://127.0.0.1/v1/user/scope/verify),
+		'scope_end_point_verify' => env('scope_verification_end_point', 'http://127.0.0.1/v1/user/scope/verify'),
+
+		/*
+        |--------------------------------------------------------------------------
+        | User refresh token database table
+        |--------------------------------------------------------------------------
+        */
+		'refresh_token_table' => 'refresh_tokens',
 	];
