@@ -18,7 +18,7 @@ class CreateRefreshTokenTable extends Migration
 			$table->string('refresh_token');
 			$table->unsignedBigInteger('user_id');
 			$table->boolean('revoked')->default(0);
-			$table->dateTime();
+			$table->dateTime('expiry');
 			$table->timestamps();
 			$table->softDeletes();
 

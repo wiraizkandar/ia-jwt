@@ -2,11 +2,9 @@
 
 namespace Wiraizkandar\Jwt;
 
-use Firebase\JWT\Key;
 use Ramsey\Uuid\Uuid;
 use Firebase\JWT\JWT;
 use Carbon\Carbon;
-use Wiraizkandar\Jwt\BaseToken;
 use Illuminate\Support\Facades\DB;
 
 class Token extends BaseToken
@@ -51,9 +49,18 @@ class Token extends BaseToken
 	 * Return uuid as refresh token
 	 * @return string
 	 */
-	private function createRefreshToken(): string
+	private function createRefreshToken($userId): string
 	{
-		return Uuid::uuid4();
+		$refreshToken = Uuid::uuid4();
+
+		\DB::table('refresh_token')
+			->insert([
+				'refresh_token' => $refreshToken,
+				'user_id' => $userId,
+				'expiry' => $this->setRefreshTokenExpiry(),
+				'created_at' => Carbon::now()->timestamp,
+				'updated_at' => Carbon::now()->timestamp,
+			]);
 	}
 
 	public function verifyRefreshToken(string $refreshToken, int $userId): bool
@@ -103,7 +110,15 @@ class Token extends BaseToken
 	 */
 	private function setExpiry(): int
 	{
-		return Carbon::now()->addSeconds(config('config.expiry_duration'))->timestamp;
+		return Carbon::now()->addSeconds(config('jwt.expiry_duration'))->timestamp;
+	}
+
+	/**
+	 * @return int
+	 */
+	private function setRefreshTokenExpiry(): int
+	{
+		return Carbon::now()->addSeconds(config('jwt.refresh_token_expiry_duration'))->timestamp;
 	}
 
 	private function setIssuedAt(): int
