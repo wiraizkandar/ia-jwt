@@ -10,10 +10,11 @@ use Firebase\JWT\SignatureInvalidException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
+use Wiraizkandar\Jwt\BaseToken;
 use Wiraizkandar\Jwt\Http\Exception\InvalidPermissionException;
 use Illuminate\Http\Request;
 
-class CheckScopes
+class CheckScopes extends BaseToken;
 {
 	/**
 	 * Handle the incoming request.
@@ -104,12 +105,12 @@ class CheckScopes
 
 	private function getKey()
 	{
-		return config('config.secret_key');
+		return config('jwt.secret_key');
 	}
 
 	private function getAlgo()
 	{
-		return config('config.algo');
+		return config('jwt.algo');
 	}
 
 	/**
@@ -119,7 +120,7 @@ class CheckScopes
 	{
 		try{
 			$response = Http::retry(3, 1000)
-				->post(config('config.scope_end_point_verify'),
+				->post(config('jwt.scope_end_point_verify'),
 					[
 						'user_id' => $userId,
 						'scope' => $scope

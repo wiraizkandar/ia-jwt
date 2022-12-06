@@ -28,7 +28,7 @@ class MiddlewareTest extends TestCase
 			"user_id" => 123
 		];
 
-		$jwtToken = JWT::encode($payload, config('config.secret_key'), config('config.algo'));
+		$jwtToken = JWT::encode($payload, config('jwt.secret_key'), config('config.algo'));
 
 		/** set bearer token */
 		$request->headers->set('Authorization','Bearer '.$jwtToken);
