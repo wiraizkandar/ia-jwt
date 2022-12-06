@@ -17,9 +17,9 @@ class Token extends BaseToken
 
 	public function __construct()
 	{
-		$this->algo = config('config.algo');
-		$this->secretKey = config('config.secret_key');
-		$this->refreshTokenTable = config('config.refresh_token_table');
+		$this->algo = config('jwt.algo');
+		$this->secretKey = config('jwt.secret_key');
+		$this->refreshTokenTable = config('jwt.refresh_token_table');
 	}
 
 	/**

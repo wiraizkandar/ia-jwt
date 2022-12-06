@@ -21,7 +21,7 @@ class JwtServiceProvider extends ServiceProvider
 
 		if ($this->app->runningInConsole()) {
 			$this->publishes([
-				__DIR__.'/../config/config.php' => config_path('jwt.php'),
+				__DIR__ . '/../config/jwt.php' => config_path('jwt.php'),
 			], 'config');
 
 			if (! class_exists('CreateRefreshTokenTable')) {
@@ -57,7 +57,7 @@ class JwtServiceProvider extends ServiceProvider
 	public function register()
 	{
 		// Automatically apply the package configuration
-		$this->mergeConfigFrom(__DIR__.'/../config/config.php', 'jwt');
+		$this->mergeConfigFrom(__DIR__ . '/../config/jwt.php', 'jwt');
 
 		// Register the main class to use with the facade
 		$this->app->singleton('jwt', function () {

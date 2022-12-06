@@ -65,8 +65,8 @@ class MiddlewareTest extends TestCase
 	 * Set default config for testing
 	 */
 	private function setConfigs(){
-		Config::set('config.secret_key','this_is_my_secret_key');
-		Config::set('config.algo','HS256');
-		Config::set('config.scope_end_point_verify','http://www.example.com');
+		Config::set('jwt.secret_key','this_is_my_secret_key');
+		Config::set('jwt.algo','HS256');
+		Config::set('jwt.scope_end_point_verify','http://www.example.com');
 	}
 }
