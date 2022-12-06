@@ -14,7 +14,7 @@ use Wiraizkandar\Jwt\BaseToken;
 use Wiraizkandar\Jwt\Http\Exception\InvalidPermissionException;
 use Illuminate\Http\Request;
 
-class CheckScopes extends BaseToken;
+class CheckScopes extends BaseToken
 {
 	/**
 	 * Handle the incoming request.
