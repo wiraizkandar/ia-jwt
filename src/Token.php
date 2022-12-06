@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\DB;
 
 class Token extends BaseToken
 {
-	private string $algo;
-	private string $secretKey;
-	private string $refreshTokenTable;
+	private $algo;
+	private $secretKey;
+	private $refreshTokenTable;
 
 	public function __construct()
 	{
@@ -26,7 +26,7 @@ class Token extends BaseToken
 	 * Generate JWT access token
 	 * @return array
 	 */
-	public function createAccessToken(array $claims, int $userId = null, string $refreshToken = null): array
+	public function createAccessToken(array $claims, ?int $userId = null, ?string $refreshToken = null): array
 	{
 		if (!empty($refreshToken) && !empty($userId)) {
 			/** verify refresh token to recreate new access token */
@@ -56,7 +56,7 @@ class Token extends BaseToken
 		return Uuid::uuid4();
 	}
 
-	private function verifyRefreshToken(string $refreshToken, int $userId): bool
+	public function verifyRefreshToken(string $refreshToken, int $userId): bool
 	{
 		$refToken = DB::table($this->refreshTokenTable)
 			->where('user_id',$userId)

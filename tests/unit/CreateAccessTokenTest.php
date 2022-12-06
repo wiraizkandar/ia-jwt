@@ -39,6 +39,19 @@ class CreateAccessTokenTest extends TestCase
 		$this->assertArrayHasKey('refresh_token',$jwtToken);
 	}
 
+	public function test_check_refresh_token()
+	{
+		$claims['user_id'] = 12121;
+
+		$token = new Token();
+
+		$refreshTokenString = md5('thisisrefreshtoken');
+
+		$verified = $token->verifyRefreshToken($refreshTokenString,$claims['user_id']);
+
+		$this->assertFalse($verified);
+	}
+
 	/**
 	 * Set default config for testing
 	 */
