@@ -24,7 +24,7 @@ class Token extends BaseToken
 	 * Generate JWT access token
 	 * @return array
 	 */
-	public function createAccessToken(array $claims, ?int $userId = null, ?string $refreshToken = null): array
+	public function createAccessToken(array $claims, int $userId = null, ?string $refreshToken = null): array
 	{
 		if (!empty($refreshToken) && !empty($userId)) {
 			/** verify refresh token to recreate new access token */
@@ -41,7 +41,7 @@ class Token extends BaseToken
 
 		return [
 			"access_token" => $this->buildAccessToken($claims),
-			"refresh_token" => $this->createRefreshToken()
+			"refresh_token" => $this->createRefreshToken($userId)
 		];
 	}
 
@@ -53,14 +53,16 @@ class Token extends BaseToken
 	{
 		$refreshToken = Uuid::uuid4();
 
-		\DB::table('refresh_token')
+		\DB::table($this->refreshTokenTable)
 			->insert([
 				'refresh_token' => $refreshToken,
 				'user_id' => $userId,
 				'expiry' => $this->setRefreshTokenExpiry(),
-				'created_at' => Carbon::now()->timestamp,
-				'updated_at' => Carbon::now()->timestamp,
+				'created_at' => Carbon::now()->toDateTimeString(),
+				'updated_at' => Carbon::now()->toDateTimeString()
 			]);
+
+		return $refreshToken;
 	}
 
 	public function verifyRefreshToken(string $refreshToken, int $userId): bool
@@ -114,11 +116,11 @@ class Token extends BaseToken
 	}
 
 	/**
-	 * @return int
+	 * @return string
 	 */
-	private function setRefreshTokenExpiry(): int
+	private function setRefreshTokenExpiry(): string
 	{
-		return Carbon::now()->addSeconds(config('jwt.refresh_token_expiry_duration'))->timestamp;
+		return Carbon::now()->addSeconds(config('jwt.refresh_token_expiry_duration'))->toDateTimeString();
 	}
 
 	private function setIssuedAt(): int
