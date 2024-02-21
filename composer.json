@@ -1,59 +1,58 @@
 {
-  "name": "wiraizkandar/ia-jwt",
-  "description": "Laravel JWT",
-  "keywords": [
-    "wiraizkandar",
-    "jwt",
-    "laravel"
-  ],
-  "homepage": "https://github.com/wiraizkandar/ia-jwt",
-  "license": "MIT",
-  "type": "library",
-  "authors": [
-    {
-      "name": "Wira Izkandar",
-      "email": "wiraizkandar1@gmail.com",
-      "role": "Soldier"
-    }
-  ],
-  "require": {
-    "php": "^8.0",
-    "firebase/php-jwt": "^6.3.1",
-    "guzzlehttp/guzzle": "^7.2",
-    "illuminate/support": "^9.0",
-    "nesbot/carbon": "^2.63",
-    "ramsey/uuid": "^4.6.0"
-  },
-  "require-dev": {
-    "orchestra/testbench": "^7.0",
-    "phpunit/phpunit": "^9.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "Wiraizkandar\\Jwt\\": "src"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Wiraizkandar\\Jwt\\Tests\\": "tests"
-    }
-  },
-  "scripts": {
-    "test": "vendor/bin/phpunit",
-    "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
-
-  },
-  "config": {
-    "sort-packages": true
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Wiraizkandar\\Jwt\\JwtServiceProvider"
-      ],
-      "aliases": {
-        "Jwt": "Wiraizkandar\\Jwt\\JwtFacade"
-      }
-    }
-  }
+	"name": "wiraizkandar/ia-jwt",
+	"description": "Laravel JWT",
+	"keywords": [
+		"wiraizkandar",
+		"jwt",
+		"laravel"
+	],
+	"homepage": "https://github.com/wiraizkandar/ia-jwt",
+	"license": "MIT",
+	"type": "library",
+	"authors": [
+		{
+			"name": "Wira Izkandar",
+			"email": "wiraizkandar1@gmail.com",
+			"role": "Soldier"
+		}
+	],
+	"require": {
+		"php": "^8.0",
+		"firebase/php-jwt": "^6.3.1",
+		"guzzlehttp/guzzle": "^7.2",
+		"illuminate/support": "^10.0",
+		"nesbot/carbon": "^2.63",
+		"ramsey/uuid": "^4.6.0"
+	},
+	"require-dev": {
+		"orchestra/testbench": "^7.0",
+		"phpunit/phpunit": "^9.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Wiraizkandar\\Jwt\\": "src"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Wiraizkandar\\Jwt\\Tests\\": "tests"
+		}
+	},
+	"scripts": {
+		"test": "vendor/bin/phpunit",
+		"test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+	},
+	"config": {
+		"sort-packages": true
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Wiraizkandar\\Jwt\\JwtServiceProvider"
+			],
+			"aliases": {
+				"Jwt": "Wiraizkandar\\Jwt\\JwtFacade"
+			}
+		}
+	}
 }
